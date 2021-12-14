@@ -16,11 +16,15 @@ namespace Tank
         {
             m_Movement = GetComponent<Complete.TankMovement>();
             m_Shooting = GetComponent<Complete.TankShooting>();
+            var camera = transform.FindAnyChild<Camera>("Camera");
+            var listener = transform.FindAnyChild<AudioListener>("Camera");
 
             if(!photonView.IsMine)
             {
                 m_Movement.enabled = false;
                 m_Shooting.enabled = false;
+                camera.enabled = false;
+                listener.enabled = false;
 
                 enabled = false;
             }
